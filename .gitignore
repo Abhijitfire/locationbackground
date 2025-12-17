@@ -1,0 +1,41 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+*.DS_Store
+*.atom/
+*.tmproj/
+
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub-cache/
+build/
+pubspec.lock
+
+# IDEs
+.idea/
+.vscode/
+
+# Android
+android/app/src/main/assets/flutter_assets/
+android/app/build/
+android/build/
+android/.gradle/
+android/gradle/
+android/gradlew
+android/gradlew.bat
+android/local.properties
+
+# iOS
+ios/Pods/
+ios/Runner/Assets.xcassets/AppIcon.appiconset/
+ios/Flutter/
+ios/Podfile.lock
+
+# Linux
+linux/flutter/ephemeral/
+
+# Windows
+windows/flutter/ephemeral/
