@@ -1,14 +1,12 @@
 import 'dart:async';
 
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:unotask/models/data_model.dart';
 import 'package:unotask/notification_service.dart';
+import 'package:unotask/location_card.dart';
 // import 'package:unotask/services/notification_service.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -173,82 +171,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                   child: ListView.builder(
                     itemCount: _records.length,
                     itemBuilder: (context, index) {
-                      final item = _records[index];
-                      final dateTime =
-                          DateTime.tryParse(item.time) ?? DateTime.now();
-                      final formattedDate = DateFormat(
-                        'MMM d, yyyy',
-                      ).format(dateTime);
-                      final formattedTime = DateFormat(
-                        'HH:mm',
-                      ).format(dateTime);
-
-                      return Card(
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 4.0,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.location_on,
-                                    color: Colors.redAccent,
-                                    size: 28,
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: Text(
-                                      item.address,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 12),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Lat: ${item.latitude.toStringAsFixed(4)}",
-                                        style: TextStyle(
-                                          color: Colors.grey[700],
-                                        ),
-                                      ),
-                                      Text(
-                                        "Lng: ${item.longitude.toStringAsFixed(4)}",
-                                        style: TextStyle(
-                                          color: Colors.grey[700],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    "$formattedDate\n$formattedTime",
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(color: Colors.grey[700]),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
+                      final record = _records[index];
+                      return LocationCard(record: record);
                     },
                   ),
                 ),
